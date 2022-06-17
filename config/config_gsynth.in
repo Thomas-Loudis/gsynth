@@ -1,0 +1,86 @@
+---------------------------------------------------------------------------
+GSynth configutation file *.in                                      
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+%% Input data points file 
+---------------------------------------------------------------------------
+input_data_points_filename  points_gsynth.in 
+
+reference_frame             ITRF      % Options: "ITRF" or "ICRF"
+
+% Ellipsoid
+coordinates_ellipsoid       grs80     % Options: "grs80" or "wgs84"      
+
+% Coordinates type: Cartesian or Geodetic (Latitude, Longitude, ellipsoidal height) 
+coordinates_type            geodetic  % Options: "geodetic" or "cartesian"
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+% Time-wise tides analysis (seconds) % Set to zero (0) to exclude the time-wise series analysis
+---------------------------------------------------------------------------
+% Overall duration (seconds) since the reference epoch denoted in the input data points file
+time_span                   3600 
+
+% Interval between sequential epochs of computations
+time_interval               900
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+%% Gravity Field model
+---------------------------------------------------------------------------
+% Gravity model file name in .gfc format (Spherical harmonic coefficients)
+gravity_model_fname      GOCO06s.gfc 
+%gravity_model_fname     EIGEN-6C4.gfc
+
+% Gravity model's degree and order  (Set a positive value or "-1" for adopting the model's maximum degree/order)
+gfm_max_degree          -1          
+gfm_max_order           -1 
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+%% Tides modelling   
+---------------------------------------------------------------------------
+%% Solid Earth Tides
+
+% Frequency indepedent terms
+solid_earth_tides_1          1    % Options: "1" or "0" (effect is incliuded or excluded correspondingly)
+
+% Frequency dependent terms
+solid_earth_tides_2_freq     1    % Options: "1" or "0" (effect is incliuded or excluded correspondingly) 
+ 
+% Ocean Tides
+ocean_tides                  1    % Options: "1" or "0" (effect is incliuded or excluded correspondingly)
+
+% Ocean Tides model file name format of spherical harmonic coefficients
+ocean_tides_model_fname      fes2014b.v1.Cnm-Snm_Om1+Om2C20_S1.txt 
+%ocean_tides_model_fname      fes2004_Cnm-Snm.dat
+
+% Ocean Tides model degree and order 
+otides_max_degree            100 
+otides_max_order             100                                        
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+%% Sun, Moon and Planets ephemeris: DE ephemeris series
+---------------------------------------------------------------------------
+% DE ephemeris main file name
+planetary_ephemeris_DE_filename    ascp2000.423
+
+% DE ephemeris header file name
+planetary_ephemeris_DE_headername  header.423
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+%% Earth Orientation modelling                                                     
+---------------------------------------------------------------------------
+% Earth Orientation Parameters (EOP) file name
+EOP_filename               eopc04_IAU2000.62-now
+
+% EOP data points (epochs) to be applied within the interpolation 
+EOP_interpolation_points   4
+
+% Precession-Nutation model by IAU (Options: IAU2000 or IAU2006
+precession_nutation_model  IAU2006
+---------------------------------------------------------------------------
+

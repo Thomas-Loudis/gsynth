@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+GSynth data points input file *.in
+---------------------------------------------------------------------------
+Data format:                                      
+Column 1:      ID of the computation point or station 
+Columns 2-4:   Coordinates: Geodetic (latitude, longitude, ellipsoidal height) or Cartesian (x,y,z) coordinates
+Columns 5-7:   Calendar Date: Year, Month, Day (Start date in case of time-wise analysis)
+Columns 8-10:  Time: Hour, Minutes, Seconds (initial epoch in case of time-wise analysis)
+
+Data line format:
+ID Coordinate_1 Coordinate_2 Coordinate_3 Year Month Day Hour Minutes Seconds
+---------------------------------------------------------------------------
+End_of_Header
+NUUK 64.171306 -51.719837 28.260 2020 05 01 00 00 0.000
+qaqo 60.7176   -46.035    39.238 2020 05 01 00 00 0.000 
