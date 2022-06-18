@@ -26,8 +26,18 @@ gsynth_data_models
 ```
 
 2. Set the configuration file `config_gsynth.in` stored in the folder `'../config/'`
+```
+cd config/
+edit config_gsynth.in
+cd ..
+```
 
-3. Set the input data points file stored in the folder `'../config/'`. Default file for the coputations data points is the `points_gsynth.in` that is being set withing the configuration file. 
+3. Edit the input data points file stored in the folder `'../config/'`. Default file for the computations data points is `points_gsynth.in` that is set within the configuration file. 
+```
+cd config/
+edit points_gsynth.in
+cd ..
+```
 
 4. Execute the main script of the software `gsynth_main.m` in the folder `'../main/'` 
 
@@ -36,12 +46,12 @@ cd main/
 gsynth_main
 ```
 
-5. The restuls are written in an output file saved in the folder `'../results/'`
+5. The restuls are written to an output ascii file saved in the folder `'../results/'`
 
 # 
 
 ### References:
 
-Papanikolaou T., Papadopoulos N.  (2015). High-frequency analysis of Earth gravity field models based on terrestrial gravity and GPS/levelling data: A case study in Greece, Journal of Geodetic Science, Vol. 5, No. 1, pp. 67-79 doi: 10.1515/jogs-2015-0008 .
+Papanikolaou T., Papadopoulos N.  (2015). High-frequency analysis of Earth gravity field models based on terrestrial gravity and GPS/levelling data: A case study in Greece, _Journal of Geodetic Science_, 5(1):67-79, doi: 10.1515/jogs-2015-0008 .
 
 Papanikolaou T. (2013). GRAVsynth and GRAVtide software' User guide, Dept. of Gravimetry, HMGS, Greece.
