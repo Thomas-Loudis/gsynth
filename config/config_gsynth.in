@@ -30,8 +30,7 @@ time_interval               900
 %% Gravity Field model
 ---------------------------------------------------------------------------
 % Gravity model file name in .gfc format (Spherical harmonic coefficients)
-gravity_model_fname      GOCO06s.gfc 
-%gravity_model_fname     EIGEN-6C4.gfc
+gravity_model_fname     EIGEN-6C4.gfc
 
 % Gravity model's degree and order  (Set a positive value or "-1" for adopting the model's maximum degree/order)
 gfm_max_degree          -1          
@@ -53,8 +52,7 @@ solid_earth_tides_2_freq     1    % Options: "1" or "0" (effect is incliuded or 
 ocean_tides                  1    % Options: "1" or "0" (effect is incliuded or excluded correspondingly)
 
 % Ocean Tides model file name format of spherical harmonic coefficients
-ocean_tides_model_fname      fes2014b.v1.Cnm-Snm_Om1+Om2C20_S1.txt 
-%ocean_tides_model_fname      fes2004_Cnm-Snm.dat
+ocean_tides_model_fname      fes2014b_v1.txt 
 
 % Ocean Tides model degree and order 
 otides_max_degree            100 
