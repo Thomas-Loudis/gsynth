@@ -84,6 +84,8 @@ addpath(genpath(src_path));
 
 output_path = fullfile(main_path,'/../results/');
 addpath(genpath(output_path));
+
+gsynth_path = fullfile(main_path,'/../');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -91,3 +93,5 @@ addpath(genpath(output_path));
 % Call the GSynth source code package
 gsynth_mainfunction(config_filename);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% cd(gsynth_path);
