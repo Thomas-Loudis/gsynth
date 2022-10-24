@@ -50,8 +50,11 @@ gsynth_main
 
 # 
 
+### Cite GSynth: 
+Papanikolaou T., Papadopoulos N.  (2015). High-frequency analysis of Earth gravity field models based on terrestrial gravity and GPS/levelling data: A case study in Greece, _Journal of Geodetic Science_, 5(1):67-79, https://doi.org/10.1515/jogs-2015-0008.
+
 ### References:
 
-Papanikolaou T., Papadopoulos N.  (2015). High-frequency analysis of Earth gravity field models based on terrestrial gravity and GPS/levelling data: A case study in Greece, _Journal of Geodetic Science_, 5(1):67-79, doi: 10.1515/jogs-2015-0008 .
+Papanikolaou T., Papadopoulos N.  (2015). High-frequency analysis of Earth gravity field models based on terrestrial gravity and GPS/levelling data: A case study in Greece, _Journal of Geodetic Science_, 5(1):67-79, https://doi.org/10.1515/jogs-2015-0008.
 
 Papanikolaou T. (2013). GRAVsynth and GRAVtide software' User guide, Dept. of Gravimetry, HMGS, Greece.
