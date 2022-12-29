@@ -169,11 +169,11 @@ Dg_fa_e = Dg_fa_p + (-0.3086) * (Negm-zeta);
 [Dg_fa_p,Negm_tides,zeta,zeta_e,zeta_z,C1,C2,C3] = sh_synth(r,n_max,m_max,GM,ae,Cnm_tides,Snm_tides,elps,Hortho);
 
 % Tides effect to geoid unudulation
-tides_dN = Negm_tides - Negm
+tides_dN = Negm_tides - Negm;
 
 [dDg_fa_p,dNegm_tides,dzeta,dzeta_e,dzeta_z,dC1,dC2,dC3] = sh_synth(r,n_max,m_max,GM,ae,Cnm_tides,Snm_tides,elps,Hortho);
-dNegm_tides 
-dzeta
+%dNegm_tides 
+%dzeta
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
