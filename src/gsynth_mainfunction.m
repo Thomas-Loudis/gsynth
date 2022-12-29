@@ -22,7 +22,7 @@ function gsynth_mainfunction(config_filename)
 
 
 global src_version 
-src_version = 'v.0.9.3';
+src_version = 'v.0.9.4';
 
 to_tic = tic;
 % delete('*.out');
@@ -110,7 +110,13 @@ fprintf('%s %s \n\n', 'Results have been stored in the output file:',out_filenam
 
 current_path = pwd;
 output_path = fullfile(current_path,'/../results/');
+cd(output_path);
+output_path = pwd;
 fprintf('%s %s \n\n', 'Results folder path:', output_path);
+% Open results output file
+edit(out_filename);
+% Return to the main path
+cd(current_path);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 fprintf('%s % .3f \n', 'Overall Computation Time (min)             :', toc(to_tic)/60);

@@ -57,8 +57,7 @@ while (~feof(fid))
     if test == 1
       m_max_otides = sscanf(line_ith,'%*s %d %*');
     end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 end
 fclose(fid);
 
@@ -71,7 +70,10 @@ fclose(fid);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ocean Tides model in form of spherical harmonics from FES series (FES2004, FES2014b, ...)
 %[otides_DelaunayNf,otides_dCnm_plus,otides_dSnm_plus,otides_dCnm_minus,otides_dSnm_minus] = tides_fes2004(ocean_tides_model_fname);
-[otides_DelaunayNf,otides_dCnm_plus,otides_dSnm_plus,otides_dCnm_minus,otides_dSnm_minus] = tides_ocean_coef(ocean_tides_model_fname);
+%[otides_DelaunayNf,otides_dCnm_plus,otides_dSnm_plus,otides_dCnm_minus,otides_dSnm_minus] = tides_ocean_coef(ocean_tides_model_fname);
+[shc_struct, delaunay_doodson_multipliers,otides_dCnm_plus,otides_dSnm_plus,otides_dCnm_minus,otides_dSnm_minus] = read_oceantides(ocean_tides_model_fname);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+otides_DelaunayNf = delaunay_doodson_multipliers;
 
 ocean_Nmax_glb = n_max_otides;
 ocean_Mmax_glb = m_max_otides;
@@ -81,4 +83,3 @@ otides_dSnm_plus_glb  = otides_dSnm_plus;
 otides_dCnm_minus_glb = otides_dCnm_minus;
 otides_dSnm_minus_glb = otides_dSnm_minus;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-

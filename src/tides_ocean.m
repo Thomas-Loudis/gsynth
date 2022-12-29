@@ -45,6 +45,8 @@ function [dCnm,dSnm] = tides_ocean(n_max,m_max,mjd,eop,dpint,DelaunayNf,dCnm_plu
 % 01/02/2019  Dr. Thomas Papanikolaou
 %             Correction to the basic Equation of the ocean tides (IERS Conv. 2010 Eq. 6.15)
 %             Correction to the multiplier of the theta_f angle computation 
+% 01/12/2022, Dr. Thomas Loudis Papanikolaou
+%             Upgrade according to new function doodson_nubmer 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -54,10 +56,41 @@ dSnm = zeros(n_max+1,n_max+1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Delaunay variables (in radians)
-[F1,F2,F3,F4,F5] = iers_delaunay(mjd);
+[F1,F2,F3,F4,F5] = delaunay_variables(mjd);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Greenwich Mean Sidereal Time (GMST) in radians
 [thetag] = iers_gmst(mjd,eop,dpint);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% thetaf computation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Delaunay and Doodson multipliers :: DelaunayNf matrix 
+% DelaunayNf = [Doodson_Number N1 N2 N3 N4 N5 n1 n2 n3 n4 n5 n6]
+[Nfrq sz2] = size(DelaunayNf);
+thetaf_matrix = zeros(Nfrq,1);
+for ifrq = 1 : Nfrq
+    %thetaf = Doodson_n1 * (thetag + pi) - DelaunayNf(ifrq,2:6) * [F1 F2 F3 F4 F5]';
+    % thetaf (in radians)
+    
+    % Delaunay_freq = DelaunayNf(ifrq,1);
+    Delaunay_N1   = DelaunayNf(ifrq,2);
+    Delaunay_N2   = DelaunayNf(ifrq,3);
+    Delaunay_N3   = DelaunayNf(ifrq,4);
+    Delaunay_N4   = DelaunayNf(ifrq,5);
+    Delaunay_N5   = DelaunayNf(ifrq,6);
+    Doodson_number = DelaunayNf(ifrq,1);
+    Doodson_n1     = DelaunayNf(ifrq,7);
+    
+    %DelaunayNf(ifrq,2:6) * [F1 F2 F3 F4 F5]'
+    Delaunay_sum = Delaunay_N1 * F1 + ...
+        Delaunay_N2 * F2 + ...
+        Delaunay_N3 * F3 + ...
+        Delaunay_N4 * F4 + ...
+        Delaunay_N5 * F5 ;
+    thetaf = Doodson_n1 * (thetag + pi) - Delaunay_sum;
+    thetaf_matrix(ifrq,1) = thetaf;
+end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,48 +105,12 @@ for n = 2 : n_max
     for m = 0 : m_limit
         dCnm_f = 0;
         dSnm_f = 0;
-        for ifrq = 1 : Nfrq  %           % Nfrq: Reduce Tidal Frequencies
-            % thetaf (in radians)
-            %thetaf = m * (thetag + pi) - DelaunayNf(ifrq,2:6) * [F1 F2 F3 F4 F5]';
-
-            % Decreasing computation time
-            Delaunay_freq = DelaunayNf(ifrq,1);
-            Delaunay_N1   = DelaunayNf(ifrq,2);
-            Delaunay_N2   = DelaunayNf(ifrq,3);
-            Delaunay_N3   = DelaunayNf(ifrq,4);
-            Delaunay_N4   = DelaunayNf(ifrq,5);
-            Delaunay_N5   = DelaunayNf(ifrq,6);
-
-            if Delaunay_freq < 100
-                Doodson_n1 = 0;
-            elseif (Delaunay_freq > 100) && (Delaunay_freq < 200)
-                Doodson_n1 = 1;
-            elseif (Delaunay_freq > 200) && (Delaunay_freq < 300)
-                Doodson_n1 = 2;
-            elseif (Delaunay_freq > 300) && (Delaunay_freq < 400)
-                Doodson_n1 = 3;
-            elseif (Delaunay_freq > 400)
-                Doodson_n1 = 4;
-            end
-            
-            %thetaf = Doodson_n1 * (thetag + pi) - DelaunayNf(ifrq,2:6) * [F1 F2 F3 F4 F5]';
-            % Decreasing computation time            
-            %DelaunayNf(ifrq,2:6) * [F1 F2 F3 F4 F5]'
-            Delaunay_sum = Delaunay_N1 * F1 + ... 
-                           Delaunay_N2 * F2 + ...
-                           Delaunay_N3 * F3 + ...
-                           Delaunay_N4 * F4 + ...
-                           Delaunay_N5 * F5 ;                           
-            thetaf = Doodson_n1 * (thetag + pi) - Delaunay_sum; 
-            
+        for ifrq = 1 : Nfrq  
+            thetaf = thetaf_matrix(ifrq,1);
             dCnm_fi = (dCnm_plus(n+1,m+1,ifrq) + dCnm_minus(n+1,m+1,ifrq)) * cos(thetaf) + (dSnm_plus(n+1,m+1,ifrq) + dSnm_minus(n+1,m+1,ifrq)) * sin(thetaf);
             dSnm_fi = (dSnm_plus(n+1,m+1,ifrq) - dSnm_minus(n+1,m+1,ifrq)) * cos(thetaf) - (dCnm_plus(n+1,m+1,ifrq) - dCnm_minus(n+1,m+1,ifrq)) * sin(thetaf);
-
             dCnm_f = dCnm_f + dCnm_fi;
             dSnm_f = dSnm_f + dSnm_fi;
-            
-           dCnm_fi = 0;
-           dSnm_fi = 0; 
         end
         % IERS Conventions update 10/08/2012 Section 6.3.2
         if m == 0
@@ -121,9 +118,8 @@ for n = 2 : n_max
         end
         dCnm(n+1,m+1) = dCnm_f;
         dSnm(n+1,m+1) = dSnm_f;
-
-        dCnm_f = 0;
-        dSnm_f = 0;
+        % dCnm_f = 0;
+        % dSnm_f = 0;
     end
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -32,7 +32,7 @@ function [dCnm,dSnm] = tides_solid2(mjd,eop,dpint)
 
 
 % Delaunay variables (in radians)
-[F1,F2,F3,F4,F5] = iers_delaunay(mjd);
+[F1,F2,F3,F4,F5] = delaunay_variables(mjd);
 
 % Greenwich Mean Sidereal Time (GMST) in radians
 [thetag] = iers_gmst(mjd,eop,dpint);
