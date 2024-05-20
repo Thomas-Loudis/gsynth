@@ -1,7 +1,7 @@
 # ![GSynth_logo5_reduced](https://user-images.githubusercontent.com/102968112/174288312-2b039dc2-f4f6-483d-b603-d8f591f42541.png)
 
 
-## GSynth: Software for gravity field functionals and Earth tides effects
+## GravSynth: Software for gravity field functionals and Earth tides effects
 
 
 GravSynth is a software for computing gravity field functionals (gravity anomalies, geoid heights) and Earth tides effects considering solid Earth tides and Ocean tides. 
