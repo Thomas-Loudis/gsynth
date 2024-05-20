@@ -4,12 +4,10 @@
 ## GSynth: Software for gravity field functionals and Earth tides effects
 
 
-GSynth is a software for computing gravity field functionals (gravity anomalies, geoid heights) and Earth tides effects considering solid Earth tides and Ocean tides. 
-GSynth has been developed by Thomas since 2013. The initial version included two main modules, GRAVsynth and GRAVtide, that have been now merged into one code package.
-
-GRAVsynth: Spherical harmonic synthesis of gravity field models for computing gravity anomalies and geoid heights 
-
-GRAVtide: Solid Earth and Ocean Tides effects modelling 
+GravSynth is a software for computing gravity field functionals (gravity anomalies, geoid heights) and Earth tides effects considering solid Earth tides and Ocean tides. 
+GravSynth has been developed by Thomas since 2013 and includes two main modules:
+- GRAVsynth: Spherical harmonic synthesis of gravity field models for computing gravity anomalies and geoid heights 
+- GRAVtide: Solid Earth and Ocean Tides effects modelling 
 
 The software is being used in gravity data analysis and tides modelling.
 
