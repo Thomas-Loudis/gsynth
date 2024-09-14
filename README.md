@@ -3,7 +3,7 @@
 
 ## GravSynth: Software for gravity field functionals and Earth tides effects
 
-GravSynth is a software for gravity field functionals and Earth tides effects considering solid Earth tides and Ocean tides. It applies spherical harmonic synthesis of gravity models for computing gravity anomalies and geoid heights. GRAVsynth was created by Thomas in 2013 and released as open source in 2022. It is being used in gravity data analysis and tides modelling.
+GravSynth is a software for gravity field functionals and Earth tides effects (GRAVtide module) considering solid Earth tides and Ocean tides. It applies spherical harmonic synthesis of gravity models for computing gravity anomalies and geoid heights. GRAVsynth was created by Thomas in 2013 and released as open source in 2022. It is being used in gravity data analysis and tides modelling.
 
 The study project was supported by the Hellenic Military Geographical Service (HMGS) for applications in data analysis of terrestrial gravity, heights and tides gauges stations of the HMGS network.
 
